@@ -1,5 +1,8 @@
+import { useState } from "react";
+
 import Counter from "./Counter";
 import MediaRow from "./MediaRow";
+import SingleView from "./SingleView";
 
 const mediaArray = [
   {
@@ -27,8 +30,7 @@ const mediaArray = [
   {
     media_id: 17,
     user_id: 2,
-    filename:
-      "http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_60fps_normal.mp4",
+    filename: "https://www.w3schools.com/html/mov_bbb.mp4",
     thumbnail: "http://place-hold.it/320/240.jpg&text=Thumb1&fontsize=20",
     filesize: 1236616,
     media_type: "video/mp4",
@@ -39,8 +41,11 @@ const mediaArray = [
 ];
 
 const Home = () => {
+  const [selectedItem, setSelectedItem] = useState(null);
+
   return (
     <>
+      <SingleView item={selectedItem} setSelectedItem={setSelectedItem} />
       <h2>My Media</h2>
       <table>
         <thead>
@@ -51,15 +56,19 @@ const Home = () => {
             <th>Created</th>
             <th>Size</th>
             <th>Type</th>
+            <th>View</th>
           </tr>
         </thead>
         <tbody>
           {mediaArray.map((item) => (
-            <MediaRow key={item.media_id} item={item} />
+            <MediaRow
+              key={item.media_id}
+              item={item}
+              setSelectedItem={setSelectedItem}
+            />
           ))}
         </tbody>
       </table>
-      <Counter />
     </>
   );
 };
