@@ -1,3 +1,4 @@
+import Counter from "./Counter";
 import MediaRow from "./MediaRow";
 
 const mediaArray = [
@@ -58,6 +59,7 @@ const Home = () => {
           ))}
         </tbody>
       </table>
+      <Counter />
     </>
   );
 };
