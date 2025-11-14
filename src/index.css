@@ -41,20 +41,44 @@ td {
   padding: 10px;
 }
 
-dialog {
+.show-btn {
+  padding: 10px 30px;
+  background-color: rgb(162, 233, 96);
+  color: #3b3b3b;
+  font-weight: bold;
+  text-decoration: none;
+  border: 2px outset rgb(205, 255, 157);
+  border-radius: 5px;
+}
+
+.show-btn:hover {
+  background-color: rgb(118, 179, 62);
+}
+
+#single-view {
   text-align: center;
   align-items: center;
   padding: 40px 0;
   margin: auto;
   width: 60%;
   background-color: #e7e7e7;
+  color: #242424;
 }
 
-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(6px);
-}
-
-dialog div {
+#single-view div {
   margin: auto;
+}
+
+#single-view button {
+  padding: 10px 30px;
+  background-color: rgb(162, 233, 96);
+  color: #3b3b3b;
+  font-weight: bold;
+  text-decoration: none;
+  border: 2px outset rgb(205, 255, 157);
+  border-radius: 5p;
+}
+
+#single-view button:hover {
+  background-color: rgb(118, 179, 62);
 }
