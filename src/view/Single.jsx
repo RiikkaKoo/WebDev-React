@@ -27,9 +27,10 @@ const Single = () => {
     <>
       {item && (
         <div id="single-view">
-          <h1>Single Item:</h1>
-          <h2>{item.title}</h2>
+          <h2>Media item:</h2>
+          <h1>{item.title}</h1>
           <p>{item.description}</p>
+          <p>By {item.username}</p>
           <div>{mediaContent}</div>
           <button onClick={() => navigate(-1)}>Go back</button>
         </div>

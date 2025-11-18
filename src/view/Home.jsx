@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-import Counter from "../components/Counter";
 import MediaRow from "../components/MediaRow";
 import SingleView from "../components/SingleView";
 
@@ -23,8 +22,18 @@ const Home = () => {
   const [mediaArray, setMediaArray] = useState([]);
 
   const getMedia = async () => {
-    const data = await fetchData("./data.json");
-    setMediaArray(data);
+    const media = await fetchData(import.meta.env.VITE_MEDIA_API + "/media");
+
+    const newArray = await Promise.all(
+      media.map(async (item) => {
+        const result = await fetchData(
+          import.meta.env.VITE_AUTH_API + "/users/" + item.user_id
+        );
+        return { ...item, username: result.username };
+      })
+    );
+
+    setMediaArray(newArray);
   };
 
   useEffect(() => {
@@ -34,7 +43,7 @@ const Home = () => {
   return (
     <>
       <SingleView item={selectedItem} setSelectedItem={setSelectedItem} />
-      <h2>My Media</h2>
+      <h2>MEDIA</h2>
       <table>
         <thead>
           <tr>
@@ -42,6 +51,7 @@ const Home = () => {
             <th>Title</th>
             <th>Description</th>
             <th>Created</th>
+            <th>Username and ID</th>
             <th>Size</th>
             <th>Type</th>
             <th>View</th>
