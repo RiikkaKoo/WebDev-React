@@ -7,25 +7,27 @@ const AUTH_API = import.meta.env.VITE_AUTH_API + "/users/";
 const useMedia = () => {
   const [mediaArray, setMediaArray] = useState([]);
 
-  useEffect(() => {
-    try {
-      const getMedia = async () => {
-        const media = await fetchData(MEDIA_API);
+  try {
+    const getMedia = async () => {
+      const media = await fetchData(MEDIA_API);
 
-        const newArray = await Promise.all(
-          media.map(async (item) => {
-            const user = await fetchData(AUTH_API + item.user_id);
-            return { ...item, username: user.username };
-          })
-        );
+      const newArray = await Promise.all(
+        media.map(async (item) => {
+          const user = await fetchData(AUTH_API + item.user_id);
+          return { ...item, username: user.username };
+        })
+      );
 
-        setMediaArray(newArray);
-      };
+      setMediaArray(newArray);
+    };
+
+    useEffect(() => {
       getMedia();
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+    }, []);
+  } catch (error) {
+    console.log(error);
+  }
+  return { mediaArray };
 };
 
 export { useMedia };
