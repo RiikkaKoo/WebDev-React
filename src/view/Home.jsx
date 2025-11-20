@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-import Counter from "../components/Counter";
 import MediaRow from "../components/MediaRow";
 import SingleView from "../components/SingleView";
 
@@ -8,8 +7,8 @@ const mediaArray = [
   {
     media_id: 8,
     user_id: 5,
-    filename: "https://place-hold.it/1200x800.jpg&text=Pic1&fontsize=120",
-    thumbnail: "http://place-hold.it/320/240.jpg&text=Thumb2&fontsize=20",
+    filename: "https://placehold.co/1200x800?text=Pic1&fontsize=120",
+    thumbnail: "https://placehold.co/320x240?text=Thumb1&fontsize=20",
     filesize: 170469,
     media_type: "image/jpeg",
     title: "Picture 1",
@@ -19,8 +18,8 @@ const mediaArray = [
   {
     media_id: 9,
     user_id: 7,
-    filename: "https://place-hold.it/800x600.jpg&text=Pic2&fontsize=72",
-    thumbnail: "http://place-hold.it/320/240.jpg&text=Thumb3&fontsize=20",
+    filename: "https://placehold.co/800x600?text=Pic1&fontsize=110",
+    thumbnail: "https://placehold.co/320x240?text=Thumb1&fontsize=20",
     filesize: 1002912,
     media_type: "image/jpeg",
     title: "Pic 2",
@@ -31,7 +30,7 @@ const mediaArray = [
     media_id: 17,
     user_id: 2,
     filename: "https://www.w3schools.com/html/mov_bbb.mp4",
-    thumbnail: "http://place-hold.it/320/240.jpg&text=Thumb1&fontsize=20",
+    thumbnail: "https://placehold.co/320x240?text=Thumb1&fontsize=20",
     filesize: 1236616,
     media_type: "video/mp4",
     title: "Bunny",
