@@ -5,7 +5,11 @@ const MediaRow = ({ item }) => {
   return (
     <tr key={item.media_id}>
       <td>
-        <img src={item.thumbnail} alt={item.title} />
+        <img
+          src={item.thumbnail}
+          alt={item.title}
+          style={{ maxWidth: "90%", borderRadius: "5px" }}
+        />
       </td>
       <td>{item.title}</td>
       <td>{item.description}</td>
