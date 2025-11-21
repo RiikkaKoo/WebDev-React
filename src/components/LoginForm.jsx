@@ -1,10 +1,10 @@
 import useForm from "../hooks/formHooks";
-import { useAuthentication } from "../hooks/apiHooks";
 import { useState } from "react";
+import { useUserContext } from "../hooks/contextHooks";
 
 const LoginForm = () => {
   const [error, setError] = useState();
-  const { postLogin } = useAuthentication();
+  const { handleLogin } = useUserContext();
 
   const initValues = {
     username: "",
@@ -13,10 +13,7 @@ const LoginForm = () => {
 
   const doLogin = async (formData) => {
     try {
-      const userInfo = await postLogin(formData);
-      setError();
-      console.log(userInfo);
-      localStorage.setItem("token", userInfo.token);
+      await handleLogin(formData);
     } catch (error) {
       console.log("Login error: " + error);
       setError(error.message);
