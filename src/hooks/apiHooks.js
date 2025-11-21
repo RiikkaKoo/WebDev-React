@@ -47,4 +47,20 @@ const useAuthentication = () => {
   return { postLogin };
 };
 
-export { useMedia, useAuthentication };
+const useUser = () => {
+  const getUserByToken = async (token) => {
+    const options = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    const tokenResults = await fetchData(AUTH_API + "/token", options);
+    return tokenResults;
+  };
+
+  const postUser = () => {};
+
+  return { getUserByToken };
+};
+
+export { useMedia, useAuthentication, useUser };
