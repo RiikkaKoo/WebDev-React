@@ -8,7 +8,7 @@ const Login = () => {
   return (
     <>
       {isLogin ? <LoginForm /> : <RegisterForm />}
-      <button onClick={() => setIsLogin(!isLogin)}>
+      <button id="change-form" onClick={() => setIsLogin(!isLogin)}>
         {isLogin ? "Register" : "Login"}
       </button>
     </>
