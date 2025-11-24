@@ -24,9 +24,9 @@ const LoginForm = () => {
 
   return (
     <>
-      <h1>Login</h1>
-      {error && <p style={{ color: "red" }}>Could not login: {error}</p>}
-      <form onSubmit={handleSubmit} style={{ width: "40%", margin: "auto" }}>
+      <h2>LOGIN</h2>
+      {error && <p style={{ color: "darkred" }}>Could not login: {error}</p>}
+      <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="loginuser">Username</label>
           <input

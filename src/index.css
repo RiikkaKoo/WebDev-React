@@ -18,7 +18,7 @@ body {
 
 main {
   margin: 0 2%;
-  align-items: center;
+  text-align: center;
 }
 
 main h2 {
@@ -62,10 +62,25 @@ nav ul a:hover {
 }
 
 button {
+  margin-top: 30px;
   padding: 10px 30px;
   background-color: rgb(162, 233, 96);
   color: #3b3b3b;
   font-weight: bold;
+}
+
+button:hover {
+  background-color: rgb(80, 218, 52);
+}
+
+button:disabled {
+  background-color: rgb(173, 94, 41);
+  border: 2px inset rgb(228, 123, 54);
+}
+
+button:disabled:hover {
+  background-color: rgb(173, 94, 41);
+  border: 2px inset rgb(228, 123, 54);
 }
 
 table,
@@ -125,4 +140,64 @@ th {
 
 #single-view button:hover {
   background-color: rgb(118, 179, 62);
+}
+
+#change-form {
+  margin: auto;
+  padding: 10px 30px;
+  background-color: rgb(255, 242, 61);
+  color: #3b3b3b;
+  font-weight: bold;
+  border: 2px outset rgb(255, 242, 61);
+  border-radius: 5p;
+}
+
+#change-form:hover {
+  background-color: rgb(221, 192, 26);
+  border: 2px inset rgb(255, 242, 61);
+}
+
+form {
+  margin: 20px auto;
+  width: 30%;
+  padding: 30px 10px;
+  background-color: #e7e7e7;
+  border: 3px outset rgb(162, 233, 96);
+  border-radius: 5px;
+}
+
+form div {
+  width: 70%;
+  margin: auto;
+}
+
+form div label {
+  text-align: left;
+  display: block;
+  width: 100%;
+  color: #242424;
+}
+
+form div input {
+  padding: 10px;
+  text-align: left;
+  display: block;
+  width: 100%;
+  color: #242424;
+  margin-bottom: 20px;
+}
+
+form div textarea {
+  padding: 10px;
+  text-align: left;
+  display: block;
+  width: 100%;
+  color: #242424;
+  margin-bottom: 20px;
+}
+
+form img {
+  display: block;
+  width: 50%;
+  margin: 10px auto 0 auto;
 }

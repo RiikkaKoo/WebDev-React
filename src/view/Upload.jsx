@@ -4,6 +4,8 @@ import { useFile, useMedia } from "../hooks/apiHooks";
 
 const Upload = () => {
   const [file, setFile] = useState(null);
+  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
   const { postFile } = useFile();
   const { postMedia } = useMedia();
 
@@ -16,13 +18,17 @@ const Upload = () => {
     console.log("doUpload: inputs: ", inputs, " file: ", file);
     const token = localStorage.getItem("token");
     try {
+      console.log(file);
       const fileResponse = await postFile(file, token);
       console.log("Upload: ", fileResponse);
       const mediaResponse = await postMedia(fileResponse.data, inputs, token);
       console.log("Post media: ", mediaResponse);
-      // TODO: Kerro käyttäjälle "onnistui"? Uudelleenohjaa toiselle "sivulle"?
+      setError("");
+      setMessage("Upload successful!");
     } catch (error) {
-      console.log("File post error: " + error);
+      console.log("File post error: ", error);
+      setMessage("");
+      setError(error.message);
     }
   };
 
@@ -40,6 +46,8 @@ const Upload = () => {
     <>
       <h1>Upload</h1>
       <form onSubmit={handleSubmit}>
+        {message && <p style={{ color: "darkgreen" }}>{message}</p>}
+        {error && <p style={{ color: "darkred" }}>Could not upload: {error}</p>}
         <div>
           <label htmlFor="title">Title</label>
           <input
@@ -75,7 +83,6 @@ const Upload = () => {
               : "https://placehold.co/600x400?text=Choose+image"
           }
           alt="preview"
-          width="200"
         />
         <button
           type="submit"
