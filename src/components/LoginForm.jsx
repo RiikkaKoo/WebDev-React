@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import useForm from "../hooks/formHooks";
 import { useAuthentication } from "../hooks/apiHooks";
 import { useState } from "react";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const [error, setError] = useState();
   const { postLogin } = useAuthentication();
 
@@ -17,6 +19,7 @@ const LoginForm = () => {
       setError();
       console.log(userInfo);
       localStorage.setItem("token", userInfo.token);
+      navigate("/");
     } catch (error) {
       console.log("Login error: " + error);
       setError(error.message);
@@ -27,9 +30,9 @@ const LoginForm = () => {
 
   return (
     <>
-      <h1>Login</h1>
-      {error && <p style={{ color: "red" }}>Could not login: {error}</p>}
-      <form onSubmit={handleSubmit} style={{ width: "40%", margin: "auto" }}>
+      <h2>LOGIN</h2>
+      {error && <p style={{ color: "darkred" }}>Could not login: {error}</p>}
+      <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="loginuser">Username</label>
           <input

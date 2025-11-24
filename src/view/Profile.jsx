@@ -13,7 +13,7 @@ const Profile = () => {
         const userResponse = await getUserByToken(token);
         setUser(userResponse.user);
       } catch (error) {
-        console.error("getUserData ERROR: " + error);
+        console.error("getUserData ERROR: ", error);
         setError(error.message);
       }
     };
@@ -32,7 +32,9 @@ const Profile = () => {
       )}
       {error && (
         <>
-          <p>Could not load user profile: Error - {error}</p>
+          <p style={{ color: "darkred" }}>
+            Could not load user profile: try loggig in.
+          </p>
         </>
       )}
     </div>
