@@ -1,8 +1,6 @@
 const SingleView = (props) => {
   const { item, setSelectedItem } = props;
 
-  console.log(item);
-
   if (!item) return null;
   const isImage = item.media_type.startsWith("image");
 
