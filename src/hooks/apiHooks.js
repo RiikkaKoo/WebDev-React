@@ -45,7 +45,29 @@ const useMedia = () => {
       throw error;
     }
   };
-  return { mediaArray, postMedia };
+
+  const deleteMedia = async (fileId, token) => {
+    try {
+      console.log(fileId);
+      const fetchOptions = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      };
+      const deleteResponse = await fetchData(
+        MEDIA_API + "/" + fileId,
+        fetchOptions
+      );
+      return deleteResponse;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+
+  return { mediaArray, postMedia, deleteMedia };
 };
 
 const useAuthentication = () => {

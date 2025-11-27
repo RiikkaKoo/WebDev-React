@@ -13,8 +13,8 @@ const Layout = () => {
   return (
     <>
       <div>
-        <nav>
-          <ul>
+        <nav className="bg-linear-to-t from-yellow-700 to-yellow-950">
+          <ul className="flex justify-center *:m-5 *:hover:bg-amber-400 *:p-3 *:w-27 *:font-semibold *:rounded-lg">
             <li>
               <Link to="/">Home</Link>
             </li>

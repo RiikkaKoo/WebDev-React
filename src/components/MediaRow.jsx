@@ -1,7 +1,38 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router";
+import { useUserContext } from "../hooks/contextHooks";
+import { useState } from "react";
+import EditDialog from "./EditDialog";
 
-const MediaRow = ({ item }) => {
+const MediaRow = (props) => {
+  const { user } = useUserContext();
+  const { item, deleteMedia, modifyMedia } = props;
+  const token = localStorage.getItem("token");
+
+  const [showEditDialog, setShowEditDialog] = useState(false);
+
+  console.log(user.user_id);
+  console.log(item.media_id);
+
+  const isLoggedIn = !!user; //Boolean(user)
+  const isOwner = isLoggedIn && user.user_id === item.user_id;
+  const isAdmin = user.role === "admin";
+  const canEdit = isOwner || isAdmin;
+
+  const handleModify = () => {
+    console.log("Handle modify");
+    setShowEditDialog(true);
+  };
+
+  const handleDelete = async () => {
+    console.log("Handle delete");
+    if (confirm("Sure you want to delete this item?")) {
+      const deleteResponse = await deleteMedia(item.media_id, token);
+      console.log(deleteResponse);
+      window.location.reload();
+    }
+  };
+
   return (
     <tr key={item.media_id}>
       <td>
@@ -25,6 +56,29 @@ const MediaRow = ({ item }) => {
         <Link to="/single" state={item} className="show-btn">
           Show
         </Link>
+        {canEdit && (
+          <>
+            <button
+              onClick={handleModify}
+              className="bg-indigo-600 font-semibold p-2.5 m-1.5 hover:bg-indigo-900 w-full rounded-md"
+            >
+              Modify
+            </button>
+            <button
+              onClick={handleDelete}
+              className="bg-amber-600 font-semibold p-2.5 m-1.5 hover:bg-amber-800 w-full rounded-md"
+            >
+              Delete
+            </button>
+            {showEditDialog && (
+              <EditDialog
+                item={item}
+                modifyMedia={modifyMedia}
+                onClose={() => setShowEditDialog(false)}
+              />
+            )}
+          </>
+        )}
       </td>
     </tr>
   );

@@ -20,7 +20,9 @@ const Profile = () => {
 
   return (
     <div>
-      <h2>PROFILE</h2>
+      <h2 className="bg-indigo-800 text-amber-50 font-bold text-lg p-5 mb-9">
+        PROFILE
+      </h2>
       {user && (
         <>
           <h3>{user.username}</h3>
