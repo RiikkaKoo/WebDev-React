@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "../hooks/contextHooks";
 import { useState } from "react";
 import EditDialog from "./EditDialog";
@@ -8,16 +8,23 @@ const MediaRow = (props) => {
   const { user } = useUserContext();
   const { item, deleteMedia, modifyMedia } = props;
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
 
   const [showEditDialog, setShowEditDialog] = useState(false);
 
-  console.log(user.user_id);
-  console.log(item.media_id);
+  //console.log(user.user_id);
+  //console.log(item.media_id);
+
+  let isOwner = "";
+  let isAdmin = "";
+  let canEdit = "";
 
   const isLoggedIn = !!user; //Boolean(user)
-  const isOwner = isLoggedIn && user.user_id === item.user_id;
-  const isAdmin = user.role === "admin";
-  const canEdit = isOwner || isAdmin;
+  if (isLoggedIn) {
+    isOwner = isLoggedIn && user.user_id === item.user_id;
+    isAdmin = user.role === "admin";
+    canEdit = isOwner || isAdmin;
+  }
 
   const handleModify = () => {
     console.log("Handle modify");
@@ -53,9 +60,12 @@ const MediaRow = (props) => {
       <td>{item.filesize}</td>
       <td>{item.media_type}</td>
       <td>
-        <Link to="/single" state={item} className="show-btn">
+        <button
+          className="bg-yellow-300 font-semibold p-2.5 m-1.5 hover:bg-yellow-600 w-full rounded-md"
+          onClick={() => navigate("/single", { state: item })}
+        >
           Show
-        </Link>
+        </button>
         {canEdit && (
           <>
             <button

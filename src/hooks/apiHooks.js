@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import fetchData from "../utils/fetchData";
 
-const MEDIA_API = import.meta.env.VITE_MEDIA_API + "/media";
+const MEDIA_API = import.meta.env.VITE_MEDIA_API;
 const AUTH_API = import.meta.env.VITE_AUTH_API + "/users";
 const UPLOAD_API = import.meta.env.VITE_UPLOAD_SERVER;
 
@@ -11,7 +11,7 @@ const useMedia = () => {
   useEffect(() => {
     try {
       const getMedia = async () => {
-        const mediaData = await fetchData(MEDIA_API);
+        const mediaData = await fetchData(MEDIA_API + "/media");
 
         const newArray = await Promise.all(
           mediaData.map(async (item) => {
@@ -38,7 +38,7 @@ const useMedia = () => {
         },
         body: JSON.stringify({ ...inputs, ...fileData }),
       };
-      const mediaResponse = await fetchData(MEDIA_API, fetchOptions);
+      const mediaResponse = await fetchData(MEDIA_API + "/media", fetchOptions);
       return mediaResponse;
     } catch (error) {
       console.log(error);
@@ -57,7 +57,7 @@ const useMedia = () => {
         },
       };
       const deleteResponse = await fetchData(
-        MEDIA_API + "/" + fileId,
+        MEDIA_API + "/media" + "/" + fileId,
         fetchOptions
       );
       return deleteResponse;
@@ -141,4 +141,75 @@ const useFile = () => {
   return { postFile };
 };
 
-export { useMedia, useAuthentication, useUser, useFile };
+const useLikes = () => {
+  const postLike = async (mediaId, token) => {
+    try {
+      const fetchOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify({ media_id: mediaId }),
+      };
+      const likeResponse = await fetchData(MEDIA_API + "/likes", fetchOptions);
+      return likeResponse;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+
+  const deleteLike = async (likeId, token) => {
+    try {
+      const fetchOptions = {
+        method: "DELETE",
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      };
+      const likeResponse = await fetchData(
+        MEDIA_API + "/likes/" + likeId,
+        fetchOptions
+      );
+      return likeResponse;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+
+  const getLikesByMediaId = async (mediaId) => {
+    try {
+      const likeResponse = await fetchData(
+        MEDIA_API + "/likes/count/" + mediaId
+      );
+      return likeResponse;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+
+  const getUserLike = async (mediaId, token) => {
+    try {
+      const fetchOptions = {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      };
+      const likeResponse = await fetchData(
+        MEDIA_API + "/likes/bymedia/user/" + mediaId,
+        fetchOptions
+      );
+      return likeResponse;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+
+  return { postLike, deleteLike, getLikesByMediaId, getUserLike };
+};
+
+export { useMedia, useAuthentication, useUser, useFile, useLikes };

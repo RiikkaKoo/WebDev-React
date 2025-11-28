@@ -13,7 +13,7 @@ const Home = () => {
     <>
       <SingleView item={selectedItem} setSelectedItem={setSelectedItem} />
       <h2>MEDIA</h2>
-      <table>
+      <table className="w-11/12">
         <thead>
           <tr>
             <th>Thumbnail</th>
