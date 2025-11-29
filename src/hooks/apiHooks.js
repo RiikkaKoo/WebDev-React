@@ -46,6 +46,28 @@ const useMedia = () => {
     }
   };
 
+  const modifyMedia = async (media_id, inputs, token) => {
+    try {
+      console.log(inputs);
+      const fetchOptions = {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify(inputs),
+      };
+      const mediaResponse = await fetchData(
+        MEDIA_API + "/media" + "/" + media_id,
+        fetchOptions
+      );
+      return mediaResponse;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+
   const deleteMedia = async (fileId, token) => {
     try {
       console.log(fileId);
@@ -67,7 +89,7 @@ const useMedia = () => {
     }
   };
 
-  return { mediaArray, postMedia, deleteMedia };
+  return { mediaArray, postMedia, modifyMedia, deleteMedia };
 };
 
 const useAuthentication = () => {

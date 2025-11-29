@@ -28,11 +28,11 @@ const Single = () => {
   return (
     <>
       {item && (
-        <div id="single-view">
-          <h2>Media item:</h2>
+        <div id="single-view" className="mt-8">
+          <h2 className="text-xl font-bold text-amber-800">Media item:</h2>
           <h1>{item.title}</h1>
           <p>{item.description}</p>
-          <p>
+          <p className="mb-7">
             By {item.username} at{" "}
             {new Date(item.created_at).toLocaleString("fi", {
               dateStyle: "short",

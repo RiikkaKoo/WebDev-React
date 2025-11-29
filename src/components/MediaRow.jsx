@@ -41,7 +41,7 @@ const MediaRow = (props) => {
   };
 
   return (
-    <tr key={item.media_id}>
+    <tr key={item.media_id} className="*:p-3.5 *:border border-amber-800">
       <td>
         <img
           src={item.thumbnail}
@@ -61,7 +61,7 @@ const MediaRow = (props) => {
       <td>{item.media_type}</td>
       <td>
         <button
-          className="bg-yellow-300 font-semibold p-2.5 m-1.5 hover:bg-yellow-600 w-full rounded-md"
+          className="bg-yellow-500 font-semibold p-2.5 m-1.5 hover:bg-yellow-700 w-10/12 rounded-md"
           onClick={() => navigate("/single", { state: item })}
         >
           Show
@@ -70,13 +70,13 @@ const MediaRow = (props) => {
           <>
             <button
               onClick={handleModify}
-              className="bg-indigo-600 font-semibold p-2.5 m-1.5 hover:bg-indigo-900 w-full rounded-md"
+              className="bg-indigo-600 font-semibold p-2.5 m-1.5 hover:bg-indigo-900 w-10/12 rounded-md"
             >
               Modify
             </button>
             <button
               onClick={handleDelete}
-              className="bg-amber-600 font-semibold p-2.5 m-1.5 hover:bg-amber-800 w-full rounded-md"
+              className="bg-amber-600 font-semibold p-2.5 m-1.5 hover:bg-amber-800 w-10/12 rounded-md"
             >
               Delete
             </button>

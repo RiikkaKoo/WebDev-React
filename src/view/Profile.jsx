@@ -20,14 +20,14 @@ const Profile = () => {
 
   return (
     <div>
-      <h2 className="bg-indigo-800 text-amber-50 font-bold text-lg p-5 mb-9">
-        PROFILE
-      </h2>
+      <h2 className="viewHeader">PROFILE</h2>
       {user && (
         <>
-          <h3>{user.username}</h3>
-          <p>Email: {user.email}</p>
-          <p>Registered at: {user.created_at}</p>
+          <div>
+            <h3 className="text-xl text-amber-600 mb-2">{user.username}</h3>
+            <p>Email: {user.email}</p>
+            <p>Registered at: {user.created_at}</p>
+          </div>
         </>
       )}
     </div>

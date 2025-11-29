@@ -44,26 +44,35 @@ const Upload = () => {
 
   return (
     <>
-      <h1>Upload</h1>
-      <form onSubmit={handleSubmit}>
-        {message && <p style={{ color: "darkgreen" }}>{message}</p>}
-        {error && <p style={{ color: "darkred" }}>Could not upload: {error}</p>}
+      <h2 className="viewHeader">Upload</h2>
+      <form
+        onSubmit={handleSubmit}
+        className="bg-orange-50 w-1/4 m-auto p-8 text-neutral-900 rounded-sm"
+      >
+        {message && <p style={{ color: "green" }}>{message}</p>}
+        {error && <p style={{ color: "red" }}>Could not upload: {error}</p>}
         <div>
-          <label htmlFor="title">Title</label>
+          <label htmlFor="title">Title: </label>
           <input
             name="title"
             type="text"
             id="title"
             onChange={handleInputChange}
+            placeholder="Type title"
+            className="p-1.5 bg-neutral-50 border-2 border-amber-950 ml-2 mt-3.5 mb-3.5 text-neutral-900"
           />
         </div>
-        <div>
-          <label htmlFor="description">Description</label>
+        <div className="block">
+          <label htmlFor="description" className="block w-full text-left">
+            Description:
+          </label>
           <textarea
             name="description"
             rows={5}
             id="description"
             onChange={handleInputChange}
+            placeholder="Type description"
+            className="p-1.5 bg-neutral-50 border-2 border-amber-950 mt-1.5 mb-3.5 text-neutral-900 w-full"
           ></textarea>
         </div>
         <div>
@@ -87,6 +96,7 @@ const Upload = () => {
         <button
           type="submit"
           disabled={file && inputs.title.length > 3 ? false : true}
+          className="bg-indigo-600 hover:bg-indigo-800 p-2.5 mt-5 font-extrabold rounded-md text-amber-50 disabled:bg-amber-900"
         >
           Upload
         </button>

@@ -17,13 +17,13 @@
   }
 }
 
-@layer component {
+@layer components {
   .viewHeader {
-    background-color: var(--bg-indigo-800);
-    color: var(--text-amber-50);
-    font-weight: var(--font-bold);
-    font-size: var(--text-lg);
-    padding: var(--p-5);
-    margin-bottom: var(mb-9);
+    background-color: theme("colors.indigo.800");
+    color: theme("colors.amber.50");
+    font-weight: theme("fontWeight.bold");
+    font-size: theme("fontSize.lg");
+    padding: theme("spacing.5");
+    margin-bottom: theme("spacing.9");
   }
 }
